@@ -1,0 +1,25 @@
+{
+  "name": "alexa-subsonic-skill",
+  "version": "1.0.0",
+  "description": "Alexa skill to play music from local Subsonic server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitzzzu/alexa-subsonic-skill.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nitzzzu/alexa-subsonic-skill/issues"
+  },
+  "homepage": "https://github.com/nitzzzu/alexa-subsonic-skill#readme",
+  "dependencies": {
+    "alexa-sdk": "^1.0.25",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.2"
+  }
+}
