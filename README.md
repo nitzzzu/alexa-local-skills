@@ -3,13 +3,15 @@
 This makes your Echo play music from your local Subsonic/Airsonic server.
 To make it work you need the following:
 
-*   [Airsonic](https://github.com/airsonic/airsonic/releases) installed on your server
-*   HTTPS certificate (letsencrypt.org)
-*   `DuckDns.org` account or public host
+*   Server with NodeJs 8+ installed and [Airsonic](https://github.com/airsonic/airsonic/releases)
+
+-   Port 443 (HTTPS) forwarded and not firewalled
+-   HTTPS certificate (letsencrypt.org)
+-   `duckdns.org` account or public host
 
 ## HTTPS and DNS configuration
 
-### Setup DuckDns.org
+### Setup duckdns.org
 
 *   Create account, set domain name and get the token
 *   Install [duckdns updater C#](https://github.com/XWolfOverride/DuckDNS) (to automatically refresh duckdns domain)
@@ -57,12 +59,12 @@ module.exports = {
 };
 ```
 
-*   Install as windows service: `node winservice install`
-*   Start the service
+*   (OPTIONAL) Install as windows service: `node winservice install`
+*   Start the service OR `node server.js`
 
 ## Skill configuration on Amazon
 
-*   Open [alexa console](https://developer.amazon.com/alexa/console)
+*   Open [Alexa console](https://developer.amazon.com/alexa/console/ask)
 
 [TODO]
 
