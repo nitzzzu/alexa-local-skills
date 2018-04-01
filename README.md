@@ -1,15 +1,41 @@
 # alexa-subsonic-skill
 
-This makes your Echo play music from your local subsonic/airsonic server.
+This makes your Echo play music from your local Subsonic/Airsonic server.
 To make it work you need the following:
 
 *   [Airsonic](https://github.com/airsonic/airsonic/releases) installed on your server
-*   HTTPS certificate (LetsEncrypt)
-*   `duckdns.org` account or public host
+*   HTTPS certificate (letsencrypt.org)
+*   `DuckDns.org` account or public host
 
 ## HTTPS and DNS configuration
 
-[TODO]
+### Setup DuckDns.org
+
+*   Create account, set domain name and get the token
+*   Install [duckdns updater C#](https://github.com/XWolfOverride/DuckDNS) (to automatically refresh duckdns domain)
+
+### Setup letsencrypt.org certificates on Windows
+
+*   Download [win-acme](https://github.com/PKISharp/win-acme)
+*   Download [curl](https://curl.haxx.se/download.html)
+*   Create `duckdns-setdns.bat`:
+
+```
+@echo off
+set arg3=%3
+curl -k "https://www.duckdns.org/update?domains={yourdomain}&token={token}&txt=%arg3%"
+```
+
+*   create `duckdns-cleardns.bat`:
+
+```
+@echo off
+curl -k "https://www.duckdns.org/update?domains={yourdomain}&token={token}&clear=true"
+```
+
+*   Run `letsencrypt.exe` and follow the steps: manual, choose dns validation, set dns scripts, skip installation scripts
+*   The certificates will be placed in `C:\ProgramData\letsencrypt-win-simple\httpsacme-v01.api.letsencrypt.org`
+*   `{domain}-key.pem` and `{domain}-crt.pem` are needed in the steps that follow
 
 ## Installation and configuration
 
