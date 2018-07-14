@@ -57,8 +57,19 @@ Once they are renewed you have to recopy them and restart the server.
 
 ## Installation and configuration
 
-- Clone source: `git clone https://github.com/nitzzzu/alexa-subsonic-skill`
+- Clone source: `git clone https://github.com/nitzzzu/alexa-local-skills`
 - Copy the SSL certificates (CA, CERT, KEY) in `./sslcert` folder
+- Deploy skills on Amazon:
+
+    - It is required to have an Amazon developer account: [Alexa console](https://developer.amazon.com/alexa/console/ask)
+    - Install Alexa CLI: `npm install -g ask-cli`
+    - Link to your developer account: `ask init` (choose: `No. Skip AWS credentials association step.` when asked)
+    - Deloy skills:
+        - Skills schemas are places in `schemas` folder
+        - Change url in skill manifest file `skill.json` (replace `https://xxx.duckdns.org/remote` with your duckdns account)
+        - To deploy them run `deploy.bat` in each folder from `schemas`.
+        - Adapt skill ids in `config.js` (skill ids can be found in `.ask` folder)
+
 - Create configuration file `config.js`:
 
 ```
@@ -79,19 +90,7 @@ module.exports = {
 - (OPTIONAL) Install as windows service: `node winservice install`
 - Start the service OR `node server.js`
 
-## Skill configuration on Amazon
 
-- It is required to have an Amazon developer account: [Alexa console](https://developer.amazon.com/alexa/console/ask)
-- Install Alexa CLI: 'npm install -g ask-cli'
-- Link to your developer account: `ask init` (choose: `No. Skip AWS credentials association step.` when asked)
-- Deloy skills:
-    - Skills schemas are places in `schemas` folder
-    - Change url in skill manifest file `skill.json` (replace `https://xxx.duckdns.org/remote` with your duckdns account)
-    - To deploy them run `deploy.bat` in each folder from `schemas`.
-    - Adapt skill ids in `config.js` (skill ids can be found in `.ask` folder)
-
-- Enable skill in alexa app
-- Enjoy
 
 ## Skill usage
 
