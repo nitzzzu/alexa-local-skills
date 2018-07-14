@@ -19,6 +19,7 @@
   "dependencies": {
     "alexa-sdk": "^1.0.25",
     "body-parser": "^1.18.2",
+    "broadlinkjs-rm": "^0.6.0",
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "md5": "^2.2.1",

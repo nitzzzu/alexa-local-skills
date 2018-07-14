@@ -1,0 +1,22 @@
+{
+    "manifest": {
+        "publishingInformation": {
+            "locales": {
+                "en-US": {
+                    "summary": "Alexa remote",
+                    "examplePhrases": ["Alexa, ask remote turn on TV"],
+                    "name": "remote"
+                }
+            }
+        },
+        "apis": {
+            "custom": {
+                "endpoint": {
+                    "sslCertificateType": "Trusted",
+                    "uri": "https://xxx.duckdns.org/remote"
+                }
+            }
+        },
+        "manifestVersion": "1.0"
+    }
+}

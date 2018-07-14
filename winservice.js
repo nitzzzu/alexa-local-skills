@@ -1,8 +1,8 @@
 const Service = require('node-windows').Service;
 
 let svc = new Service({
-    name: 'AlexaSubsonic',
-    description: 'Alexa Subsonic Skill',
+    name: 'AlexaSkills',
+    description: 'Alexa Skills',
     script: require('path').join(__dirname, 'server.js'),
     maxRetries: 3
 });

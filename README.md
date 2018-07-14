@@ -1,6 +1,10 @@
 # Alexa local skills
 
-This makes your Echo play music from your local Subsonic/Airsonic server.
+This is a collection of alexa self hosted skills:
+
+- subsonic skill: makes your Echo play music from your local Subsonic/Airsonic server.
+- remote skill: user Broadlink RM PRO remote to control your IR devices (TV..)
+
 To make it work you need the following:
 
 - Server with NodeJs 8+ installed and [Airsonic](https://github.com/airsonic/airsonic/releases)
@@ -48,6 +52,9 @@ CERT: 'xxx.duckdns.org-crt.pem'
 KEY: 'xxx.duckdns.org-key.pem'
 ```
 
+The certificates expire after 90 days but they are automatically renewed by Scheduled Task.
+Once they are renewed you have to recopy them and restart the server.
+
 ## Installation and configuration
 
 - Clone source: `git clone https://github.com/nitzzzu/alexa-subsonic-skill`
@@ -56,7 +63,8 @@ KEY: 'xxx.duckdns.org-key.pem'
 
 ```
 module.exports = {
-    ALEXA_APPLICATION_ID: [ALEXA SKILL ID],
+    REMOTE_SKILL_ID: '[SKILL_ID]',
+    SUBSONIC_SKILL_ID: '[SKILL_ID]',
     SUBSONICSERVER: 'http://192.168.1.1:4040',
     SUBSONICUSERNAME: '',
     SUBSONICPASSWORD: '',
@@ -73,10 +81,19 @@ module.exports = {
 
 ## Skill configuration on Amazon
 
-- Open [Alexa console](https://developer.amazon.com/alexa/console/ask)
+- It is required to have an Amazon developer account: [Alexa console](https://developer.amazon.com/alexa/console/ask)
+- Install Alexa CLI: 'npm install -g ask-cli'
+- Link to your developer account: `ask init` (choose: `No. Skip AWS credentials association step.` when asked)
+- Deloy skills:
+    - Skills schemas are places in `schemas` folder
+    - Change url in skill manifest file `skill.json` (replace `https://xxx.duckdns.org/remote` with your duckdns account)
+    - To deploy them run `deploy.bat` in each folder from `schemas`.
+    - Adapt skill ids in `config.js` (skill ids can be found in `.ask` folder)
 
-[TODO]
+- Enable skill in alexa app
+- Enjoy
 
 ## Skill usage
 
-> Alexa, tell subsonic to play humpty dumpty
+> Alexa, ask subsonic to play eminem  
+> Alexa, ask remote turn on TV

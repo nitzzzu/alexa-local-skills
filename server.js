@@ -10,7 +10,8 @@ const logger = require('./logger.js');
 const config = require('./config');
 
 const subsonic = require('./subsonic');
-const subsonicSkillHandlers = require('./skills/subsonic-skill').handlers;
+const subsonicSkillHandlers = require('./skills/subsonic/index').handlers;
+const remoteSkillHandlers = require('./skills/remote/index').handlers;
 
 const app = express();
 app.use(cors());
@@ -44,8 +45,24 @@ app.post('/subsonic', (req, res) => {
     };
 
     const alexa = Alexa.handler(req.body, context);
-    alexa.appId = config.ALEXA_APPLICATION_ID;
+    alexa.appId = config.SUBSONIC_SKILL_ID;
     alexa.registerHandlers(subsonicSkillHandlers);
+    alexa.execute();
+});
+
+app.post('/remote', (req, res) => {
+    const context = {
+        fail: () => {
+            res.sendStatus(500);
+        },
+        succeed: data => {
+            res.send(data);
+        }
+    };
+
+    const alexa = Alexa.handler(req.body, context);
+    alexa.appId = config.REMOTE_SKILL_ID;
+    alexa.registerHandlers(remoteSkillHandlers);
     alexa.execute();
 });
 

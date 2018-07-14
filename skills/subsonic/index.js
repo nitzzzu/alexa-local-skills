@@ -1,6 +1,6 @@
 const querystring = require('querystring');
 const logger = require('winston');
-const config = require('../config');
+const config = require('../../config');
 
 let lastSearch;
 let lastPlaybackStart;

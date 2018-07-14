@@ -1,0 +1,114 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "subsonic",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "SearchIntent",
+          "slots": [
+            {
+              "name": "SearchQuery",
+              "type": "VIDEOS"
+            }
+          ],
+          "samples": [
+            "put on {SearchQuery}",
+            "start playing {SearchQuery}",
+            "play {SearchQuery}",
+            "search for {SearchQuery}",
+            "find {SearchQuery}"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.LoopOnIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.LoopOffIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "4 hours Peaceful and Relaxing Instrumental Music"
+              }
+            },
+            {
+              "name": {
+                "value": "eminem"
+              }
+            },
+            {
+              "name": {
+                "value": "let me be your fantasy"
+              }
+            },
+            {
+              "name": {
+                "value": "DJ jazzy jeff and the fresh prince"
+              }
+            },
+            {
+              "name": {
+                "value": "john travolta and olivia newton john"
+              }
+            },
+            {
+              "name": {
+                "value": "KC and the sunshine band"
+              }
+            },
+            {
+              "name": {
+                "value": "toad the wet sproket"
+              }
+            },
+            {
+              "name": {
+                "value": "the rolling stones"
+              }
+            },
+            {
+              "name": {
+                "value": "the fray"
+              }
+            },
+            {
+              "name": {
+                "value": "prince"
+              }
+            }
+          ],
+          "name": "VIDEOS"
+        }
+      ]
+    }
+  }
+}

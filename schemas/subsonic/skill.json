@@ -1,0 +1,25 @@
+{
+    "manifest": {
+        "publishingInformation": {
+            "locales": {
+                "en-US": {
+                    "name": "subsonic"
+                }
+            }
+        },
+        "apis": {
+            "custom": {
+                "endpoint": {
+                    "sslCertificateType": "Trusted",
+                    "uri": "https://xxx.duckdns.org/subsonic"
+                },
+                "interfaces": [
+                    {
+                        "type": "AUDIO_PLAYER"
+                    }
+                ]
+            }
+        },
+        "manifestVersion": "1.0"
+    }
+}
