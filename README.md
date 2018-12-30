@@ -1,9 +1,9 @@
 # Alexa local skills
 
-This is a collection of alexa self hosted skills:
+This is a collection of alexa self hosted skills (based on ASK SDK v2):
 
 - subsonic skill: makes your Echo play music from your local Subsonic/Airsonic server.
-- remote skill: user Broadlink RM PRO remote to control your IR devices (TV..)
+- remote skill: uses Broadlink RM PRO remote to control your IR devices (TV..)
 
 To make it work you need the following:
 
@@ -89,8 +89,6 @@ module.exports = {
 - Install: `npm install`
 - (OPTIONAL) Install as windows service: `node winservice install`
 - Start the service OR `node server.js`
-
-
 
 ## Skill usage
 

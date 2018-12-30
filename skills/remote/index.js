@@ -1,11 +1,24 @@
+const Alexa = require('ask-sdk-core');
 const logger = require('winston');
 const config = require('../../config');
 const BroadlinkJS = require('broadlinkjs-rm');
 const convertProntoCode = require('./convertProntoCode');
 
-const handlers = {
-    TurnOnIntent: function() {
-        let device = this.event.request.intent.slots.device.value;
+const LaunchRequestHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'LaunchRequest';
+    },
+    handle(handlerInput) {
+        return handlerInput.responseBuilder.speak('Welcome to the Alexa Local Skills!').getResponse();
+    }
+};
+
+const TurnOnIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest' && handlerInput.requestEnvelope.request.intent.name === 'TurnOnIntent';
+    },
+    handle(handlerInput) {
+        let device = handlerInput.requestEnvelope.request.intent.slots.device.value;
 
         logger.info('Turning on ' + device);
 
@@ -26,15 +39,57 @@ const handlers = {
             const hexDataBuffer = new Buffer(hexData, 'hex');
             device.sendData(hexDataBuffer, false, hexData);
         });
-        this.emit(':responseReady');
-    },
-    'AMAZON.StopIntent': function() {},
-    'AMAZON.HelpIntent': function() {},
-    SessionEndedRequest: function() {},
-    Unhandled: function() {
-        this.response.speak("Sorry, I didn't get that");
-        this.emit(':responseReady');
+
+        return handlerInput.responseBuilder.speak(`Turning on ${device}`).getResponse();
     }
 };
 
-module.exports = { handlers };
+const HelpIntentHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'IntentRequest' && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.HelpIntent';
+    },
+    handle(handlerInput) {
+        return handlerInput.responseBuilder.speak(`You can say 'Turn On TV'`).getResponse();
+    }
+};
+
+const CancelAndStopIntentHandler = {
+    canHandle(handlerInput) {
+        return (
+            handlerInput.requestEnvelope.request.type === 'IntentRequest' &&
+            (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent' ||
+                handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent')
+        );
+    },
+    handle(handlerInput) {
+        return handlerInput.responseBuilder.speak('Goodbye!').getResponse();
+    }
+};
+
+const SessionEndedRequestHandler = {
+    canHandle(handlerInput) {
+        return handlerInput.requestEnvelope.request.type === 'SessionEndedRequest';
+    },
+    handle(handlerInput) {
+        console.log(`Session ended with reason: ${handlerInput.requestEnvelope.request.reason}`);
+
+        return handlerInput.responseBuilder.getResponse();
+    }
+};
+
+const ErrorHandler = {
+    canHandle() {
+        return true;
+    },
+    handle(handlerInput, error) {
+        console.log(`Error handled: ${error.message}`);
+
+        return handlerInput.responseBuilder.speak("Sorry, I can't understand the command. Please say again.").getResponse();
+    }
+};
+
+module.exports = Alexa.SkillBuilders.custom()
+    .addRequestHandlers(LaunchRequestHandler, TurnOnIntentHandler, HelpIntentHandler, CancelAndStopIntentHandler, SessionEndedRequestHandler)
+    .addErrorHandlers(ErrorHandler)
+    .withSkillId(config.REMOTE_SKILL_ID)
+    .create();

@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/nitzzzu/alexa-subsonic-skill#readme",
   "dependencies": {
-    "alexa-sdk": "^1.0.25",
+    "ask-sdk": "^2.3.0",
     "body-parser": "^1.18.2",
     "broadlinkjs-rm": "^0.6.0",
     "cors": "^2.8.4",
@@ -25,7 +25,7 @@
     "md5": "^2.2.1",
     "node-windows": "^0.1.14",
     "querystring": "^0.2.0",
-    "request": "^2.85.0",
+    "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "winston": "^2.4.1"
   }
