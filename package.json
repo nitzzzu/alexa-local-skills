@@ -23,10 +23,12 @@
     "cors": "^2.8.4",
     "express": "^4.16.2",
     "md5": "^2.2.1",
-    "node-windows": "^0.1.14",
     "querystring": "^0.2.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5",
     "winston": "^2.4.1"
+  },
+  "optionalDependencies": {
+    "node-windows": "^0.1.14"
   }
 }
